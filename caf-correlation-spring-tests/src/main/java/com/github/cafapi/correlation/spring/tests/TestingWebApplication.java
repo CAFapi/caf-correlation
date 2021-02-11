@@ -21,7 +21,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-@SpringBootApplication(scanBasePackages = {"com.filter.http.spring"})
+@SpringBootApplication(scanBasePackages = {"com.github.cafapi.correlation.spring"})
 public class TestingWebApplication implements WebMvcConfigurer
 {
     public static void main(final String[] args)

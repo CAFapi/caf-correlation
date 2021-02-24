@@ -46,6 +46,7 @@ public class CorrelationIdFilter implements Filter
         final HttpServletRequest req = (HttpServletRequest) request;
         final HttpServletResponse resp = (HttpServletResponse) response;
         final String correlationId = Optional.ofNullable(req.getHeader(CorrelationIdConfigurationConstants.HEADER_NAME))
+            .filter(s -> !s.isEmpty())
             .orElseGet(() -> UUID.randomUUID().toString());
         MDC.put(CorrelationIdConfigurationConstants.MDC_KEY, correlationId);
         resp.addHeader(CorrelationIdConfigurationConstants.HEADER_NAME, correlationId);

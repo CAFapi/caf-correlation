@@ -50,6 +50,37 @@ final class CorrelationIdDropwizardTest
     }
 
     @Test
+    void testCorrelationIdIsAddedIfNullCorrelationInRequest()
+    {
+        final Client client = EXT.client();
+
+        final Response response = client.target(
+            String.format("http://localhost:%d/ping", EXT.getLocalPort()))
+            .request()
+            .header(HEADER_NAME, null)
+            .get();
+
+        Assertions.assertNotNull(response.getHeaders().get(HEADER_NAME));
+        Assertions.assertNotNull(response.getHeaders().get(HEADER_NAME).get(0));
+    }
+
+    @Test
+    void testCorrelationIdIsAddedIfEmptyCorrelationInRequest()
+    {
+        final Client client = EXT.client();
+
+        final Response response = client.target(
+            String.format("http://localhost:%d/ping", EXT.getLocalPort()))
+            .request()
+            .header(HEADER_NAME, "")
+            .get();
+
+        String correlationIdFromResponse = (String) response.getHeaders().get(HEADER_NAME).get(0);
+        Assertions.assertNotNull(correlationIdFromResponse);
+        Assertions.assertNotEquals("", correlationIdFromResponse);
+    }
+
+    @Test
     void testRequestWithHeader()
     {
         final Client client = EXT.client();

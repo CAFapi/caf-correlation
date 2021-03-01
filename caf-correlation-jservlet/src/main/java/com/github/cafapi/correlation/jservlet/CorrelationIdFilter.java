@@ -15,7 +15,9 @@
  */
 package com.github.cafapi.correlation.jservlet;
 
-import com.github.cafapi.correlation.constants.CorrelationIdConfigurationConstants;
+import static com.github.cafapi.correlation.constants.CorrelationIdConfigurationConstants.HEADER_NAME;
+import static com.github.cafapi.correlation.constants.CorrelationIdConfigurationConstants.MDC_KEY;
+
 import java.io.IOException;
 import java.util.Optional;
 import java.util.UUID;
@@ -45,11 +47,11 @@ public class CorrelationIdFilter implements Filter
     {
         final HttpServletRequest req = (HttpServletRequest) request;
         final HttpServletResponse resp = (HttpServletResponse) response;
-        final String correlationId = Optional.ofNullable(req.getHeader(CorrelationIdConfigurationConstants.HEADER_NAME))
+        final String correlationId = Optional.ofNullable(req.getHeader(HEADER_NAME))
             .filter(s -> !s.isEmpty())
             .orElseGet(() -> UUID.randomUUID().toString());
-        MDC.put(CorrelationIdConfigurationConstants.MDC_KEY, correlationId);
-        resp.addHeader(CorrelationIdConfigurationConstants.HEADER_NAME, correlationId);
+        MDC.put(MDC_KEY, correlationId);
+        resp.addHeader(HEADER_NAME, correlationId);
         chain.doFilter(request, response);
     }
 

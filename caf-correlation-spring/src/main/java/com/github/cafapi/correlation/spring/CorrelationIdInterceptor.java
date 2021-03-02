@@ -17,7 +17,9 @@ package com.github.cafapi.correlation.spring;
 
 import static com.github.cafapi.correlation.constants.CorrelationIdConfigurationConstants.HEADER_NAME;
 import static com.github.cafapi.correlation.constants.CorrelationIdConfigurationConstants.MDC_KEY;
-import java.util.Objects;
+
+import java.util.Optional;
+import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.slf4j.MDC;
@@ -33,11 +35,11 @@ public final class CorrelationIdInterceptor extends HandlerInterceptorAdapter
         final Object handler
     )
     {
-        final String correlationId = request.getHeader(HEADER_NAME);
-        if (Objects.nonNull(correlationId) && !correlationId.isEmpty()) {
-            MDC.put(MDC_KEY, correlationId);
-            response.setHeader(HEADER_NAME, correlationId);
-        }
+        final String correlationId = Optional.ofNullable(request.getHeader(HEADER_NAME))
+            .filter(s -> !s.isEmpty())
+            .orElseGet(() -> UUID.randomUUID().toString());
+        MDC.put(MDC_KEY, correlationId);
+        response.setHeader(HEADER_NAME, correlationId);
         return true;
     }
 

@@ -51,7 +51,7 @@ public final class TestingWebApplicationTests
     }
 
     @Test
-    public void testInterceptor()
+    public void testInterceptorWithCorrelationIdInHeader()
     {
         //prepare
         final HttpHeaders httpHeaders = new HttpHeaders();
@@ -66,6 +66,41 @@ public final class TestingWebApplicationTests
         final String correlationID = responseEntity.getHeaders().get(HEADER_NAME).get(0);
         Assertions.assertThat(correlationID).isNotNull();
         Assertions.assertThat(correlationID).isEqualTo("UUID1");
+    }
+
+    @Test
+    public void testInterceptorWithoutCorrelationIdInHeader()
+    {
+        //prepare
+        final HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.add(HEADER_NAME, "");
+        final HttpEntity<?> request = new HttpEntity<>(httpHeaders);
+
+        //act
+        final HttpEntity<String> responseEntity
+            = this.restTemplate.exchange("http://localhost:" + port + "/greeting", HttpMethod.GET, request, String.class);
+
+        //assert
+        final String correlationID = responseEntity.getHeaders().get(HEADER_NAME).get(0);
+        Assertions.assertThat(correlationID).isNotNull();
+        Assertions.assertThat(correlationID).isNotEmpty();
+    }
+
+    @Test
+    public void testInterceptorWithEmptyCorrelationIdInHeader()
+    {
+        //prepare
+        final HttpHeaders httpHeaders = new HttpHeaders();
+        final HttpEntity<?> request = new HttpEntity<>(httpHeaders);
+
+        //act
+        final HttpEntity<String> responseEntity
+            = this.restTemplate.exchange("http://localhost:" + port + "/greeting", HttpMethod.GET, request, String.class);
+
+        //assert
+        final String correlationID = responseEntity.getHeaders().get(HEADER_NAME).get(0);
+        Assertions.assertThat(correlationID).isNotNull();
+        Assertions.assertThat(correlationID).isNotEmpty();
     }
 
     @Test

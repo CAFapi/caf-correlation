@@ -20,8 +20,8 @@ import io.dropwizard.Configuration;
 import io.dropwizard.ConfiguredBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+import jakarta.servlet.DispatcherType;
 import java.util.EnumSet;
-import javax.servlet.DispatcherType;
 
 public class CorrelationIdBundle<C extends Configuration> implements ConfiguredBundle<C>
 {

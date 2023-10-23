@@ -17,11 +17,11 @@ package com.github.cafapi.correlation.jaxrs;
 
 import static com.github.cafapi.correlation.constants.CorrelationIdConfigurationConstants.HEADER_NAME;
 import static com.github.cafapi.correlation.constants.CorrelationIdConfigurationConstants.MDC_KEY;
+import jakarta.ws.rs.client.ClientRequestContext;
+import jakarta.ws.rs.client.ClientRequestFilter;
+import jakarta.ws.rs.ext.Provider;
 import java.util.Optional;
 import java.util.UUID;
-import javax.ws.rs.client.ClientRequestContext;
-import javax.ws.rs.client.ClientRequestFilter;
-import javax.ws.rs.ext.Provider;
 import org.slf4j.MDC;
 
 @Provider

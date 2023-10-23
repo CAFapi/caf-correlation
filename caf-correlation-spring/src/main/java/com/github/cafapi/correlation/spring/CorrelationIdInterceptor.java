@@ -18,10 +18,10 @@ package com.github.cafapi.correlation.spring;
 import static com.github.cafapi.correlation.constants.CorrelationIdConfigurationConstants.HEADER_NAME;
 import static com.github.cafapi.correlation.constants.CorrelationIdConfigurationConstants.MDC_KEY;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.util.Optional;
 import java.util.UUID;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.slf4j.MDC;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;

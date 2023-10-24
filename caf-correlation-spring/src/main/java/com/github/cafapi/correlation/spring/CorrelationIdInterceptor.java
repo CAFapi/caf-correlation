@@ -23,10 +23,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.util.Optional;
 import java.util.UUID;
 import org.slf4j.MDC;
+import org.springframework.web.servlet.AsyncHandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-public final class CorrelationIdInterceptor extends HandlerInterceptorAdapter
+public final class CorrelationIdInterceptor implements AsyncHandlerInterceptor
 {
     @Override
     public boolean preHandle(

@@ -17,10 +17,10 @@ package com.github.cafapi.correlation.dropwizard.tests;
 
 import static com.github.cafapi.correlation.constants.CorrelationIdConfigurationConstants.HEADER_NAME;
 import com.github.cafapi.correlation.dropwizard.CorrelationIdBundle;
-import io.dropwizard.Application;
-import io.dropwizard.Configuration;
-import io.dropwizard.setup.Bootstrap;
-import io.dropwizard.setup.Environment;
+import io.dropwizard.core.Application;
+import io.dropwizard.core.Configuration;
+import io.dropwizard.core.setup.Bootstrap;
+import io.dropwizard.core.setup.Environment;
 import io.dropwizard.testing.junit5.DropwizardAppExtension;
 import io.dropwizard.testing.junit5.DropwizardExtensionsSupport;
 import jakarta.ws.rs.GET;

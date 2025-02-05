@@ -27,10 +27,15 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Optional;
 import java.util.UUID;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 
 public class CorrelationIdFilter implements Filter
 {
+    private static final Logger logger = LoggerFactory.getLogger(CorrelationIdFilter.class);
+
     @Override
     public void init(final FilterConfig filterConfig)
     {
@@ -48,6 +53,9 @@ public class CorrelationIdFilter implements Filter
         final String correlationId = Optional.ofNullable(req.getHeader(CorrelationIdConfigurationConstants.HEADER_NAME))
             .filter(s -> !s.isEmpty())
             .orElseGet(() -> UUID.randomUUID().toString());
+
+        logger.error("990352:doFilter(): correlationID: {}", correlationId);
+
         MDC.put(CorrelationIdConfigurationConstants.MDC_KEY, correlationId);
         resp.addHeader(CorrelationIdConfigurationConstants.HEADER_NAME, correlationId);
         chain.doFilter(request, response);

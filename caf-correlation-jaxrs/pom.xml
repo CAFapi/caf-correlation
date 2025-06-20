@@ -28,6 +28,7 @@
     </parent>
 
     <artifactId>caf-correlation-jaxrs</artifactId>
+    <name>caf-correlation-jaxrs</name>
 
     <dependencies>
         <dependency>

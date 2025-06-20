@@ -28,6 +28,7 @@
     </parent>
 
     <artifactId>caf-correlation-spring</artifactId>
+    <name>caf-correlation-spring</name>
 
     <dependencies>
         <dependency>

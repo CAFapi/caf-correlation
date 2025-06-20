@@ -28,5 +28,6 @@
     </parent>
 
     <artifactId>caf-correlation-constants</artifactId>
+    <name>caf-correlation-constants</name>
 
 </project>

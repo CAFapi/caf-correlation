@@ -28,6 +28,7 @@
     </parent>
 
     <artifactId>caf-correlation-spring-tests</artifactId>
+    <name>caf-correlation-spring-tests</name>
 
     <properties>
         <maven.install.skip>true</maven.install.skip>

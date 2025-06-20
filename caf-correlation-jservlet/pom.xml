@@ -28,6 +28,7 @@
     </parent>
 
     <artifactId>caf-correlation-jservlet</artifactId>
+    <name>caf-correlation-jservlet</name>
 
     <dependencies>
         <dependency>

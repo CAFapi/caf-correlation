@@ -28,6 +28,7 @@
     </parent>
 
     <artifactId>caf-correlation-dropwizard</artifactId>
+    <name>caf-correlation-dropwizard</name>
 
     <dependencies>
         <dependency>

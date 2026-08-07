@@ -71,6 +71,7 @@
         <module>caf-correlation-spring</module>
         <module>caf-correlation-spring-tests</module>
         <module>caf-correlation-dropwizard</module>
+        <module>caf-correlation-useragent-filter</module>
     </modules>
 
     <properties>
@@ -182,6 +183,11 @@
             <dependency>
                 <groupId>com.github.cafapi.correlation</groupId>
                 <artifactId>caf-correlation-spring</artifactId>
+                <version>2.1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.cafapi.correlation</groupId>
+                <artifactId>caf-correlation-useragent-filter</artifactId>
                 <version>2.1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
